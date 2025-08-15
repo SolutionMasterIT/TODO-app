@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="hu" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Modern HTML5 alap sablon, szemantikus elemekkel és reszponzív stílussal." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="App / Weboldal címe" />
+  <meta property="og:description" content="Rövid leírás a megosztásokhoz." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com" />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+
+  <!-- Faviconok -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <title>HTML5 Alap Sablon</title>
+
+  <style>
+    /* Alap reset + tipográfia */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.5; color: #111; background: #fafafa; }
+    img, svg, video { max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    :focus-visible { outline: 3px solid #3b82f6; outline-offset: 2px; }
+
+    /* Layout segédosztályok */
+    .container { max-width: 1100px; margin-inline: auto; padding: 1rem; }
+    .grid { display: grid; gap: 1rem; }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+    /* Színek (light/dark) */
+    :root { --bg: #fafafa; --fg: #111; --muted: #6b7280; --card: #fff; --border: #e5e7eb; --primary: #2563eb; --btn_back: #fff; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b0f17; --fg: #e5e7eb; --muted: #9ca3af; --card: #111827; --border: #1f2937; --primary: #60a5fa; }
+    }
+    body { background: var(--bg); color: var(--fg); }
+
+    header { border-bottom: 1px solid var(--border); background: var(--card); position: sticky; top: 0; z-index: 50; }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    nav ul { list-style: none; display: flex; gap: .75rem; padding: 0; margin: 0; }
+    nav a { display: inline-block; padding: .5rem .75rem; border-radius: .75rem; }
+    nav a[aria-current="page"], nav a:hover { background: var(--border); text-decoration: none; }
+
+    .hero { padding: 3rem 0; }
+    .hero h1 { font-size: clamp(1.8rem, 1.1rem + 2vw, 3rem); margin: 0 0 .5rem; }
+    .hero p { color: var(--muted); margin: 0; }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1rem; border-radius: .75rem; border: 1px solid var(--border); background: var(--btn_back); cursor: pointer; }
+    .btn.primary { background: var(--primary); color: white; border-color: transparent; }
+
+    footer { margin-top: 3rem; border-top: 1px solid var(--border); background: var(--card); }
+    .muted { color: var(--muted); }
+
+    /* Egyszerű mobil menü */
+    #menu { display: none; }
+    .menu-toggle { display: inline-flex; }
+    @media (min-width: 800px) {
+      .menu-toggle { display: none; }
+      #menu { display: block !important; }
+    }
+  </style>
+  <script>
+    // Kis JS: mobil menü és év frissítés
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('#menuBtn');
+      const menu = document.querySelector('#menu');
+      btn?.addEventListener('click', () => {
+        const open = menu.style.display === 'block';
+        menu.style.display = open ? 'none' : 'block';
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</head>
+<body>
+  <a href="#tartalom" class="visually-hidden-focusable">Ugrás a tartalomra</a>
+
+  <header role="banner">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+      <div class="brand">⚡ Márkanév</div>
+      <button id="menuBtn" class="btn menu-toggle" aria-controls="menu" aria-expanded="false" aria-label="Menü váltása">☰ Menü</button>
+      <nav aria-label="Fő navigáció" id="menu">
+        <ul>
+          <li><a href="#" aria-current="page">Kezdőlap</a></li>
+          <li><a href="#rolunk">Rólunk</a></li>
+          <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
+          <li><a href="#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tartalom" class="container" role="main">
+    <section class="hero">
+      <h1>Modern HTML5 sablon</h1>
+      <p>Készen áll szemantikus elemekkel, reszponzív rácsokkal, űrlapokkal és hasznos alap stílussal.</p>
+      <p style="margin-top:1rem;">
+        <a class="btn primary" href="#szolgaltatasok">Indulás</a>
+        <a class="btn" href="#rolunk">Tudj meg többet</a>
+      </p>
+    </section>
+
+    <section id="rolunk" aria-labelledby="rolunk-cim" class="grid grid-3">
+      <h2 id="rolunk-cim" style="grid-column:1/-1; margin:0;">Rólunk</h2>
+      <article class="card">
+        <h3>Küldetés</h3>
+        <p class="muted">Egyszerű, gyors és hozzáférhető webeket készítünk.</p>
+      </article>
+      <article class="card">
+        <h3>Értékek</h3>
+        <ul>
+          <li>Teljesítmény és hozzáférhetőség</li>
+          <li>Tiszta dizájn</li>
+          <li>Nyílt szabványok</li>
+        </ul>
+      </article>
+      <aside class="card" aria-label="Kiemelt információ">
+        <h3>Gyors tények</h3>
+        <dl>
+          <dt>Alapítva</dt><dd>2025</dd>
+          <dt>Központ</dt><dd>Budapest</dd>
+          <dt>Ügyfelek</dt><dd>Startupok, KKV-k</dd>
+        </dl>
+      </aside>
+    </section>
+
+    <section id="szolgaltatasok" aria-labelledby="szolg-cim" style="margin-top:2rem;">
+      <h2 id="szolg-cim">Szolgáltatások</h2>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Webfejlesztés</h3>
+          <p>SPA-k, SSR/SSG, API integráció.</p>
+          <button class="btn">Ajánlatot kérek</button>
+        </article>
+        <article class="card">
+          <h3>UI/UX</h3>
+          <p>Prototípusok, dizájn rendszerek, audit.</p>
+          <button class="btn">Konzultáció</button>
+        </article>
+        <article class="card">
+          <h3>DevOps</h3>
+          <p>CI/CD, konténerizáció, monitorozás.</p>
+          <button class="btn">További infó</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="minta-cim" style="margin-top:2rem;" class="grid grid-2">
+      <h2 id="minta-cim" style="grid-column:1/-1;">Minta komponensek</h2>
+      <figure class="card">
+        <img src="https://picsum.photos/800/400" alt="Helyőrző kép tájról" />
+        <figcaption class="muted">Kép felirata</figcaption>
+      </figure>
+      <div class="card">
+        <h3>Táblázat</h3>
+        <div style="overflow:auto;">
+          <table style="border-collapse: collapse; width: 100%;">
+            <thead>
+              <tr>
+                <th style="text-align:left; border-bottom:1px solid var(--border); padding:.5rem;">#</th>
+                <th style="text-align:left; border-bottom:1px solid var(--border); padding:.5rem;">Név</th>
+                <th style="text-align:left; border-bottom:1px solid var(--border); padding:.5rem;">Állapot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:.5rem; border-bottom:1px solid var(--border);">1</td>
+                <td style="padding:.5rem; border-bottom:1px solid var(--border);">Elem A</td>
+                <td style="padding:.5rem; border-bottom:1px solid var(--border);"><span class="muted">Aktív</span></td>
+              </tr>
+              <tr>
+                <td style="padding:.5rem; border-bottom:1px solid var(--border);">2</td>
+                <td style="padding:.5rem; border-bottom:1px solid var(--border);">Elem B</td>
+                <td style="padding:.5rem; border-bottom:1px solid var(--border);">Függőben</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <form class="card" aria-labelledby="urlap-cim" id="kapcsolat">
+        <h3 id="urlap-cim">Kapcsolati űrlap</h3>
+        <label for="nev">Név</label>
+        <input id="nev" name="nev" type="text" placeholder="Teljes név" required style="width:100%; padding:.6rem; border:1px solid var(--border); border-radius:.5rem; margin:.4rem 0 1rem;" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="nev@pelda.hu" required style="width:100%; padding:.6rem; border:1px solid var(--border); border-radius:.5rem; margin:.4rem 0 1rem;" />
+
+        <label for="uzenet">Üzenet</label>
+        <textarea id="uzenet" name="uzenet" rows="5" placeholder="Miben segíthetünk?" style="width:100%; padding:.6rem; border:1px solid var(--border); border-radius:.5rem; margin:.4rem 0 1rem;"></textarea>
+
+        <button class="btn primary" type="submit">Küldés</button>
+      </form>
+
+      <aside class="card" aria-label="Oldalsáv">
+        <h3>Oldalsáv</h3>
+        <p class="muted">Hírek, linkek vagy CTA-k helye.</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container" style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between;">
+      <small class="muted">© <span id="year">2025</span> Márkanév. Minden jog fenntartva.</small>
+      <nav aria-label="Lábléc menü">
+        <ul style="display:flex; gap:.75rem; list-style:none; margin:0; padding:0;">
+          <li><a href="#">Adatvédelem</a></li>
+          <li><a href="#">ÁSZF</a></li>
+          <li><a href="#">Süti beállítások</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
