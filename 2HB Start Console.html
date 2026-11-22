@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="hu"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2HB startoldal, gyors linkekkel, hírekkel, ügyintézéssel és saját projektek indítópultjával.">
+  <meta name="theme-color" content="#08050f">
+  <meta property="og:title" content="2HB Start Console">
+  <meta property="og:description" content="Sötét témás 2HB indítópult gyors elérésekkel és saját projektekhez.">
+  <meta property="og:type" content="website">
+  <title>2HB Start Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="2HB%20Start%20Console_files/css2_R8bd.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="2HB%20Start%20Console_files/ring_R8bd.png">
+  <link rel="stylesheet" href="2HB%20Start%20Console_files/2hb-start_R8bd.css">
+</head>
+<body>
+  <div class="stage" aria-hidden="true">
+    <div class="beam beam-a"></div>
+    <div class="beam beam-b"></div>
+    <div class="scanline"></div>
+    <canvas id="matrix" width="1869" height="1007" style="width: 1869px; height: 1007px;"></canvas>
+  </div>
+
+  <header class="topbar">
+    <a class="brand-chip" href="https://hspcomputer.hu/STARTPAGE/start.html" aria-label="2HB">
+      <img src="2HB%20Start%20Console_files/ring_R8bd.png" alt="">
+      <span>
+        <strong>2HB</strong>
+        <small>Start Console</small>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Gyors navigáció">
+      <a href="#launchpad">AI gyorsító</a>
+      <a href="#projects">Projektek</a>
+      <a href="#tools">Eszközök</a>
+      <a href="#security">Védelem</a>
+    </nav>
+    <div class="quick-icons" aria-label="Gyors ikonok">
+      <a class="quick-icon" href="https://www.google.hu/" target="_blank" rel="noopener" title="Google" aria-label="Google">
+        <img src="2HB%20Start%20Console_files/quick-google_R8bd.png" alt="">
+      </a>
+      <a class="quick-icon" href="https://mail.google.com/mail/u/0/" target="_blank" rel="noopener" title="Gmail" aria-label="Gmail">
+        <img src="2HB%20Start%20Console_files/gmail_R8bd.png" alt="">
+      </a>
+      <a class="quick-icon" href="https://www.facebook.com/" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+        <img src="2HB%20Start%20Console_files/quick-facebook_R8bd.png" alt="">
+      </a>
+      <a class="quick-icon" href="https://www.youtube.com/" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+        <img src="2HB%20Start%20Console_files/quick-youtube_R8bd.png" alt="">
+      </a>
+      <a class="quick-icon" href="https://www.tiktok.com/" target="_blank" rel="noopener" title="TikTok" aria-label="TikTok">
+        <img src="2HB%20Start%20Console_files/quick-tiktok_R8bd.png" alt="">
+      </a>
+      <a class="quick-channel" href="https://www.youtube.com/channel/UCvvzmsZVkG1paSen6wEtexA" target="_blank" rel="noopener" aria-label="2HB YouTube csatornánk">
+        <img src="2HB%20Start%20Console_files/ring_R8bd.png" alt="">
+        <span>Csatornánk</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">2HB / FoxComm / Endencio / FoxApp</p>
+        <h1 id="hero-title">2HB Start Console</h1>
+        <p class="lead">Gyorsindító, hírek, ügyintézés és saját projektjeink a 2HB Kezdőlapon</p>
+
+        <form class="search-console" id="searchForm" action="https://www.google.com/search" method="get" target="_blank">
+          <label for="searchInput">Keresés</label>
+          <div class="search-box">
+            <span class="google-mark" aria-hidden="true">G</span>
+            <input id="searchInput" name="q" type="search" autocomplete="off" aria-autocomplete="list" aria-controls="searchSuggestions" placeholder="Írj be bármit, és jönnek a Google javaslatok...">
+            <button type="submit">Keresés</button>
+          </div>
+          <div class="search-suggestions" id="searchSuggestions" role="listbox" aria-label="Google keresési javaslatok" hidden=""></div>
+        </form>
+      </div>
+
+      <aside class="status-panel" aria-label="Állapot panel">
+        <div class="time-card">
+          <span id="greeting">Szép napot</span>
+          <strong id="clock">12:16:12</strong>
+          <small id="dateLine">2026. november 22., vasárnap</small>
+        </div>
+        <div class="orbital-logo">
+          <img src="2HB%20Start%20Console_files/ring_R8bd.png" alt="2HB ring logó">
+          <span class="orbit-ring ring-one"></span>
+          <span class="orbit-ring ring-two"></span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section tools" id="tools" aria-labelledby="tools-title">
+      <div class="section-head">
+        <p class="eyebrow">2HB eszköztár</p>
+        <h2 class="lab-title" id="tools-title">Gyors segédek</h2>
+      </div>
+      <div class="tool-grid">
+        <article class="tool-card color-tool">
+          <div class="tool-title">
+            <span>Színválasztó</span>
+            <strong>Color picker</strong>
+          </div>
+          <div class="color-picker-wrap">
+            <canvas id="colorPlane" width="320" height="190" aria-label="Színtér"></canvas>
+            <div class="color-swatch" id="colorSwatch" style="background: rgb(180, 122, 255); box-shadow: rgba(255, 255, 255, 0.08) 0px 0px 0px 1px inset, rgba(180, 122, 255, 0.4) 0px 0px 42px;"></div>
+          </div>
+          <label class="hue-control">Hue
+            <input id="hueSlider" type="range" min="0" max="360" value="266" aria-label="Hue csúszka">
+          </label>
+          <div class="preset-colors" aria-label="Gyors színek">
+            <button type="button" data-color="#8b42ff"></button>
+            <button type="button" data-color="#3cff93"></button>
+            <button type="button" data-color="#ff8a1f"></button>
+            <button type="button" data-color="#ea4335"></button>
+            <button type="button" data-color="#4285f4"></button>
+            <button type="button" data-color="#fbbc05"></button>
+          </div>
+          <div class="color-values">
+            <label>HEX<input id="hexValue" type="text" readonly="readonly" value="#B47AFF"></label>
+            <label>RGB<input id="rgbValue" type="text" readonly="readonly" value="rgb(180, 122, 255)"></label>
+            <label>HSL<input id="hslValue" type="text" readonly="readonly" value="hsl(266, 100%, 74%)"></label>
+          </div>
+        </article>
+
+        <article class="tool-card calc-tool">
+          <div class="tool-title">
+            <span>Számológép</span>
+            <strong>Gyors számítás</strong>
+          </div>
+          <input id="calcDisplay" class="calc-display" type="text" inputmode="decimal" placeholder="0" aria-label="Számológép kijelző">
+          <div class="calc-grid" aria-label="Számológép gombok">
+            <button type="button" data-calc="clear">C</button>
+            <button type="button" data-calc="back">⌫</button>
+            <button type="button" data-calc="%">%</button>
+            <button type="button" data-calc="/">/</button>
+            <button type="button" data-calc="7">7</button>
+            <button type="button" data-calc="8">8</button>
+            <button type="button" data-calc="9">9</button>
+            <button type="button" data-calc="*">*</button>
+            <button type="button" data-calc="4">4</button>
+            <button type="button" data-calc="5">5</button>
+            <button type="button" data-calc="6">6</button>
+            <button type="button" data-calc="-">-</button>
+            <button type="button" data-calc="1">1</button>
+            <button type="button" data-calc="2">2</button>
+            <button type="button" data-calc="3">3</button>
+            <button type="button" data-calc="+">+</button>
+            <button type="button" data-calc="0">0</button>
+            <button type="button" data-calc=".">.</button>
+            <button class="calc-equals" type="button" data-calc="=">=</button>
+          </div>
+        </article>
+
+        <article class="tool-card translate-tool">
+          <div class="tool-title">
+            <span>Fordító</span>
+            <strong>EN → HU</strong>
+          </div>
+          <textarea id="translateText" rows="5" placeholder="Írd ide az angol szöveget..."></textarea>
+          <div class="translate-actions">
+            <button id="translateNowButton" class="translate-button" type="button">Gyors fordítás</button>
+            <button id="translateButton" class="translate-button secondary" type="button">Irány a Google Fordító</button>
+          </div>
+          <div class="translation-output" id="translationOutput">Ide kerül a magyar fordítás.</div>
+          <small id="translateStatus">Alapértelmezés: angolról magyarra, Google motorral.</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <p class="eyebrow">2HB műhely</p>
+        <h2 class="lab-title" id="projects-title">A 2HB Laborban</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project-card wide">
+          <img src="2HB%20Start%20Console_files/ring_R8bd.png" alt="2HB FoxComm ring">
+          <div class="project-content">
+            <span>Fox Community OS</span>
+            <h3>2HB FoxComm</h3>
+            <p>Saját rendszerépítés, finomhangolás, frissítések és közösségi fejlesztések egy helyen.</p>
+          </div>
+        </article>
+        <a class="project-card" href="https://www.youtube.com/channel/UCvvzmsZVkG1paSen6wEtexA" target="_blank" rel="noopener">
+          <div class="youtube-preview" aria-hidden="true">
+            <div class="youtube-play">▶</div>
+            <div class="channel-head">
+              <img src="2HB%20Start%20Console_files/ring_R8bd.png" alt="">
+              <div>
+                <strong>Innovatív Fejlesztő Csapat</strong>
+                <small>@iveoveiveove · 3,06 E feliratkozó · 391 videó</small>
+                <em>Dehogy merevít meg delelés, ...stb.</em>
+              </div>
+            </div>
+            <div class="channel-pills">
+              <span>Csatorna</span>
+              <span>Videók</span>
+              <span>Közösség</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <span>YouTube csatornánk</span>
+            <h3>Iratkozz fel</h3>
+            <p>Légy te is csatornatag, és kövesd a 2HB friss videóit, rendszerépítéseit és tippjeit.</p>
+          </div>
+        </a>
+        <article class="project-card soon-card">
+          <div class="site-preview" aria-hidden="true">
+            <div class="preview-title">Üdvözlünk itthon!</div>
+            <div class="preview-nav">
+              <span>Főoldal</span>
+              <span>Szolgáltatásaink</span>
+              <span>FoxComm</span>
+              <span>Belépés</span>
+            </div>
+            <div class="preview-ring">
+              <img src="2HB%20Start%20Console_files/ring_R8bd.png" alt="">
+            </div>
+            <div class="preview-hero">
+              <strong>2HB Informatika</strong>
+              <small>Hatékony, letisztult, reklámmentes informatikai felület készül.</small>
+              <b>Hamarosan</b>
+            </div>
+          </div>
+          <div class="project-content">
+            <span>Support</span>
+            <h3>Weboldal készül</h3>
+            <p>Hamarosan érkezik az új 2HB bemutatkozó és kapcsolatfelvételi felület.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section ai-section" id="launchpad" aria-labelledby="launchpad-title">
+      <div class="section-head">
+        <p class="eyebrow">AI launchpad</p>
+        <h2 class="lab-title" id="launchpad-title">Napi AI gyorsindító</h2>
+      </div>
+      <div class="ai-grid">
+        <a class="ai-card" href="https://suno.com/" target="_blank" rel="noopener">
+          <span class="ai-logo suno"><img src="2HB%20Start%20Console_files/ai-suno_R8bd.png" alt=""></span>
+          <span class="ai-copy">
+            <strong>Suno</strong>
+            <small>Zenegenerátor</small>
+          </span>
+        </a>
+        <a class="ai-card" href="https://gemini.google.com/" target="_blank" rel="noopener">
+          <span class="ai-logo"><img src="2HB%20Start%20Console_files/ai-gemini_R8bd.png" alt=""></span>
+          <span class="ai-copy">
+            <strong>Google Gemini</strong>
+            <small>Google AI</small>
+          </span>
+        </a>
+        <a class="ai-card" href="https://designer.microsoft.com/" target="_blank" rel="noopener">
+          <span class="ai-logo designer"><img src="2HB%20Start%20Console_files/ai-designer_R8bd.png" alt=""></span>
+          <span class="ai-copy">
+            <strong>Microsoft Designer</strong>
+            <small>Kép és design</small>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div class="panel news-panel">
+        <div class="section-head compact">
+          <p class="eyebrow">Hírek és ügyintézés</p>
+          <h2 class="lab-title">Fontos kapuk</h2>
+        </div>
+        <div class="mini-grid">
+          <a class="mini-card" href="https://index.hu/" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/indexhu_R8bd.png" alt=""><span>Index</span></a>
+          <a class="mini-card" href="https://24.hu/" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/24hu_R8bd.png" alt=""><span>24.hu</span></a>
+          <a class="mini-card" href="https://444.hu/" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/444hu_R8bd.png" alt=""><span>444</span></a>
+          <a class="mini-card" href="https://magyarkozlony.hu/" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/kozlony_R8bd.png" alt=""><span>Közlöny</span></a>
+          <a class="mini-card" href="https://gate.gov.hu/sso/ap/ApServlet?partnerid=mohu" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/mohu_R8bd.png" alt=""><span>MO.hu</span></a>
+        </div>
+      </div>
+
+      <div class="panel system-panel">
+        <p class="eyebrow">Rendszer üzenet</p>
+        <h2 class="lab-title">2HB újdonságok</h2>
+        <p>Kövess minket a YouTube közösségi oldalon, ahol Windows, rendszerépítés, karbantartás és teljesítmény témákban jönnek a friss tartalmak.</p>
+        <a href="https://www.youtube.com/channel/UCvvzmsZVkG1paSen6wEtexA" target="_blank" rel="noopener">Innovatív Fejlesztő Csapat</a>
+      </div>
+    </section>
+
+    <section class="section" id="security" aria-labelledby="security-title">
+      <div class="section-head">
+        <p class="eyebrow">Böngészővédelem</p>
+        <h2 class="lab-title" id="security-title">Reklámvédelem telepítése</h2>
+      </div>
+      <div class="grid cards-4">
+        <a class="app-card security" href="https://addons.mozilla.org/hu/firefox/addon/ublock-origin/" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/fublock_R8bd.png" alt=""><span>uBlock Firefox</span></a>
+        <a class="app-card security" href="https://addons.mozilla.org/hu/firefox/addon/adguard-adblocker/" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/fadg_R8bd.png" alt=""><span>AdGuard Firefox</span></a>
+        <a class="app-card security" href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=hu" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/cub_R8bd.png" alt=""><span>uBlock Chrome</span></a>
+        <a class="app-card security" href="https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg" target="_blank" rel="noopener"><img src="2HB%20Start%20Console_files/cadg_R8bd.png" alt=""><span>AdGuard Chrome</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span id="year">2026 ©</span>
+    <span>2HB Start Console</span>
+    <a href="https://hspcomputer.hu/STARTPAGE/start.html">2HB online</a>
+  </footer>
+
+  <script src="2HB%20Start%20Console_files/2hb-start_R8bd.js"></script>
+
+
+</body></html>
